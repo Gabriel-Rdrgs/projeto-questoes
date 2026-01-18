@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de Questões – ENEM/Vestibulares</title>
+    
+    <!-- Estilos Globais e Componentes -->
+    <link rel="stylesheet" href="css/globals.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📚 Banco de Questões Completo</h1>
+            <p>ENEM/Vestibulares – Gerenciar, Filtrar e Praticar</p>
+        </div>
+
+        <!-- Abas Principais -->
+        <div class="tab-container" id="tabContainer"></div>
+
+        <!-- Conteúdo Dinâmico das Abas -->
+        <div id="simulador" class="tab-content active"></div>
+        <div id="gerenciador" class="tab-content"></div>
+        <div id="importar" class="tab-content"></div>
+    </div>
+
+    <!-- Modal: Adicionar/Editar Questão -->
+    <div id="questionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Adicionar Questão</h2>
+                <button class="close-btn" onclick="Gerenciador.closeModal()">×</button>
+            </div>
+            <div class="success-message" id="successMessage">✓ Questão salva com sucesso!</div>
+            <form id="questionForm"></form>
+        </div>
+    </div>
+
+    <!-- ===================================== -->
+    <!-- SCRIPTS - Ordem de Carregamento      -->
+    <!-- ===================================== -->
+    
+    <!-- 1. Módulos Core (Data, UI, Utils) -->
+    <script src="js/modules/utils.js"></script>
+    <script src="js/modules/data.js"></script>
+    <script src="js/modules/ui.js"></script>
+    
+    <!-- 2. Features Específicas -->
+    <script src="js/features/simulador.js"></script>
+    <script src="js/features/gerenciador.js"></script>
+    <script src="js/features/importador.js"></script>
+    <script src="js/features/estatisticas.js"></script>
+    
+    <!-- 3. Aplicação Principal (Inicialização) -->
+    <script src="js/app.js"></script>
+</body>
+</html>

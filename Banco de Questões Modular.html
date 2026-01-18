@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de Questões – ENEM/Vestibulares</title>
+    <style>
+        :root {
+            --color-primary: #38bdf8;
+            --color-primary-dark: #0284c7;
+            --color-success: #10b981;
+            --color-danger: #ef4444;
+            --color-warning: #f59e0b;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #020617 0%, #1e293b 100%);
+            border-radius: 12px;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--color-primary);
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: #0f172a;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(56, 189, 248, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            border: 2px solid var(--color-primary);
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-primary);
+            color: #0f172a;
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.85rem;
+        }
+
+        .btn-danger {
+            background-color: var(--color-danger);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            opacity: 0.9;
+        }
+
+        .btn-success {
+            background-color: var(--color-success);
+            color: white;
+        }
+
+        .tab-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 15px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            color: var(--color-primary);
+            border-bottom-color: var(--color-primary);
+        }
+
+        .tab-btn:hover {
+            color: var(--color-primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .filter-section {
+            background-color: var(--bg-card);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #334155;
+        }
+
+        .filter-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-group label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            padding: 10px;
+            background-color: #0f172a;
+            color: var(--text-primary);
+            border: 1px solid #334155;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .filter-group input:focus,
+        .filter-group select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .form-section {
+            background-color: var(--bg-card);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #334155;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px;
+            background-color: #0f172a;
+            color: var(--text-primary);
+            border: 1px solid #334155;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .option-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .option-input {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .option-input input {
+            flex: 1;
+            padding: 10px;
+            background-color: #0f172a;
+            color: var(--text-primary);
+            border: 1px solid #334155;
+            border-radius: 6px;
+        }
+
+        .option-letter {
+            min-width: 40px;
+            padding: 8px 12px;
+            background-color: #334155;
+            border-radius: 4px;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-align: center;
+        }
+
+        .question-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .question-card {
+            background-color: var(--bg-card);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--color-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .question-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 16px rgba(56, 189, 248, 0.2);
+        }
+
+        .question-card.selected {
+            background-color: #1e293b;
+            border-left-color: var(--color-success);
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .question-meta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-topic {
+            background-color: #334155;
+            color: var(--color-primary);
+        }
+
+        .badge-bank {
+            background-color: #334155;
+            color: var(--color-warning);
+        }
+
+        .badge-year {
+            background-color: #334155;
+            color: var(--text-secondary);
+        }
+
+        .difficulty {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .difficulty.easy {
+            background-color: #064e3b;
+            color: var(--color-success);
+        }
+
+        .difficulty.medium {
+            background-color: #92400e;
+            color: var(--color-warning);
+        }
+
+        .difficulty.hard {
+            background-color: #7f1d1d;
+            color: var(--color-danger);
+        }
+
+        .question-text {
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .question-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            justify-content: flex-end;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            background-color: #0f172a;
+            border: 2px solid #334155;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            border-color: var(--color-primary);
+            background-color: #1a2744;
+        }
+
+        .option input[type="radio"] {
+            cursor: pointer;
+            margin-top: 4px;
+            width: 18px;
+            height: 18px;
+        }
+
+        .option-letter-circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 30px;
+            height: 30px;
+            padding: 0;
+            background-color: #334155;
+            border-radius: 50%;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .option span:not(.option-letter-circle) {
+            flex: 1;
+            line-height: 1.5;
+            color: var(--text-primary);
+        }
+
+        .option.selected {
+            background-color: #1e4d6b;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+        }
+
+        .correct-feedback {
+            background-color: #064e3b;
+            color: var(--color-success);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--color-success);
+            margin: 15px 0;
+            display: none;
+        }
+
+        .incorrect-feedback {
+            background-color: #7f1d1d;
+            color: var(--color-danger);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--color-danger);
+            margin: 15px 0;
+            display: none;
+        }
+
+        .correct-feedback.show,
+        .incorrect-feedback.show {
+            display: block;
+        }
+
+        .feedback-label {
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .feedback p {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .stats {
+            background-color: var(--bg-card);
+            padding: 20px;
+            border-radius: 12px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+            border: 1px solid #334155;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 15px;
+            background-color: #0f172a;
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid #334155;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #334155;
+        }
+
+        .modal-header h2 {
+            color: var(--color-primary);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--color-primary);
+        }
+
+        .success-message {
+            background-color: #064e3b;
+            color: var(--color-success);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--color-success);
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state h3 {
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #334155;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.6rem;
+            }
+
+            .filter-row {
+                grid-template-columns: 1fr;
+            }
+
+            .option-group {
+                grid-template-columns: 1fr;
+            }
+
+            .question-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Banco de Questões Completo</h1>
+            <p>ENEM/Vestibulares – Gerenciar, Filtrar e Praticar</p>
+        </div>
+
+        <div class="tab-container" id="tabContainer"></div>
+
+        <!-- Conteúdo dinâmico das abas -->
+        <div id="simulador" class="tab-content active"></div>
+        <div id="gerenciador" class="tab-content"></div>
+        <div id="importar" class="tab-content"></div>
+    </div>
+
+    <!-- MODAL: Adicionar/Editar Questão -->
+    <div id="questionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Adicionar Questão</h2>
+                <button class="close-btn" onclick="UI.closeAddModal()">×</button>
+            </div>
+            <div class="success-message" id="successMessage">✓ Questão salva com sucesso!</div>
+            <form id="questionForm"></form>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // 1. MÓDULO DE DADOS
+        // ============================================
+        const DataModule = (() => {
+            let questionsData = [
+                {
+                    id: 1,
+                    topic: 'egito',
+                    bank: 'enem-2024',
+                    difficulty: 'easy',
+                    text: 'O historiador grego Heródoto afirmou: "O Egito é uma dádiva do rio Nilo". Essa frase expressa a importância do Nilo para:',
+                    context: 'Heródoto (484–420 a.C.) foi um historiador grego que viajou pelo Egito.',
+                    options: [
+                        { letter: 'A', text: 'A expansão militar do Egito sobre povos vizinhos.' },
+                        { letter: 'B', text: 'O desenvolvimento da agricultura e a concentração de poder faraônico.' },
+                        { letter: 'C', text: 'A criação do sistema de escrita hieroglífica egípcia.' },
+                        { letter: 'D', text: 'A construção de cidades portuárias no Mediterrâneo.' },
+                        { letter: 'E', text: 'O comércio marítimo com povos europeus.' }
+                    ],
+                    correctAnswer: 1,
+                    explanation: 'O rio Nilo foi fundamental para a agricultura egípcia, pois suas cheias periódicas fertilizavam as margens.'
+                },
+                {
+                    id: 2,
+                    topic: 'egito',
+                    bank: 'enem-2023',
+                    difficulty: 'medium',
+                    text: 'A prática do embalsamamento no Egito Antigo estava diretamente relacionada a:',
+                    context: 'O embalsamamento era um processo complexo que levava semanas.',
+                    options: [
+                        { letter: 'A', text: 'Técnicas médicas avançadas de preservação de órgãos.' },
+                        { letter: 'B', text: 'Crenças religiosas sobre a vida após a morte e a imortalidade da alma.' },
+                        { letter: 'C', text: 'Métodos econômicos de controle populacional entre as classes pobres.' },
+                        { letter: 'D', text: 'Práticas de sacrifício animal para agradar aos deuses.' },
+                        { letter: 'E', text: 'Demonstrações de poder militar através de desfiles fúnebres.' }
+                    ],
+                    correctAnswer: 1,
+                    explanation: 'Os egípcios acreditavam na vida após a morte (Duat) e que a alma precisava de um corpo preservado.'
+                },
+                {
+                    id: 3,
+                    topic: 'mesopotamia',
+                    bank: 'fuvest-2024',
+                    difficulty: 'easy',
+                    text: 'A Mesopotâmia recebe esse nome porque:',
+                    context: 'O termo vem do grego: "meso" (meio) + "potamos" (rio).',
+                    options: [
+                        { letter: 'A', text: 'Era uma região desértica entre montanhas e oásis.' },
+                        { letter: 'B', text: 'Localizava-se entre os rios Tigre e Eufrates (atual Iraque).' },
+                        { letter: 'C', text: 'Era formada por várias ilhas no Mar Mediterrâneo.' },
+                        { letter: 'D', text: 'Situava-se entre o Nilo e o Mar Vermelho.' },
+                        { letter: 'E', text: 'Era uma região montanhosa entre rios e vales.' }
+                    ],
+                    correctAnswer: 1,
+                    explanation: 'Mesopotâmia significa literalmente "terra entre rios", entre o Tigre e o Eufrates.'
+                },
+                {
+                    id: 4,
+                    topic: 'mesopotamia',
+                    bank: 'enem-2022',
+                    difficulty: 'medium',
+                    text: 'Uma diferença fundamental entre o Egito e a Mesopotâmia era:',
+                    context: 'Ambas as civilizações eram baseadas em rios, mas com características distintas.',
+                    options: [
+                        { letter: 'A', text: 'O Egito tinha cheias previsíveis, enquanto a Mesopotâmia tinha cheias violentas.' },
+                        { letter: 'B', text: 'A Mesopotâmia era uma monarquia centralizada, enquanto o Egito era formado por cidades-estados.' },
+                        { letter: 'C', text: 'O Egito praticava agricultura itinerante, enquanto a Mesopotâmia praticava sedentarismo.' },
+                        { letter: 'D', text: 'A Mesopotâmia tinha maior desenvolvimento tecnológico e militar.' },
+                        { letter: 'E', text: 'O Egito praticava o comércio marítimo, enquanto a Mesopotâmia era isolada.' }
+                    ],
+                    correctAnswer: 0,
+                    explanation: 'As cheias do Nilo eram previsíveis e regulares, facilitando a centralização estatal.'
+                },
+                {
+                    id: 5,
+                    topic: 'mesopotamia',
+                    bank: 'unicamp-2024',
+                    difficulty: 'hard',
+                    text: 'O Código de Hammurabi (1755–1750 a.C.) é importante principalmente porque:',
+                    context: 'O código foi descoberto em uma estela de diorito negro em Susa.',
+                    options: [
+                        { letter: 'A', text: 'Foi o primeiro documento escrito da história humana.' },
+                        { letter: 'B', text: 'Demonstra um sistema legal estruturado e a estratificação social mesopotâmica.' },
+                        { letter: 'C', text: 'Prova que a Mesopotâmia tinha mais poder que o Egito.' },
+                        { letter: 'D', text: 'Mostra que a escravidão foi abolida pela primeira vez.' },
+                        { letter: 'E', text: 'Revela técnicas secretas de construção das pirâmides.' }
+                    ],
+                    correctAnswer: 1,
+                    explanation: 'O Código de Hammurabi revela a organização jurídica com leis diferentes para classes sociais.'
+                },
+                {
+                    id: 6,
+                    topic: 'mesopotamia',
+                    bank: 'enem-2024',
+                    difficulty: 'medium',
+                    text: 'A Lei do Talio ("olho por olho") no Código de Hammurabi era aplicada:',
+                    context: 'O código continha vários parágrafos dedicados a lesões corporais.',
+                    options: [
+                        { letter: 'A', text: 'De forma igual para todas as classes sociais.' },
+                        { letter: 'B', text: 'Apenas para crimes envolvendo propriedade privada.' },
+                        { letter: 'C', text: 'De forma diferenciada de acordo com a classe social.' },
+                        { letter: 'D', text: 'Exclusivamente para crimes contra o rei.' },
+                        { letter: 'E', text: 'Apenas entre escravos.' }
+                    ],
+                    correctAnswer: 2,
+                    explanation: 'A Lei do Talio mesopotâmica não era aplicada igualmente; variava conforme a classe social.'
+                },
+                {
+                    id: 7,
+                    topic: 'hebreus',
+                    bank: 'enem-2023',
+                    difficulty: 'easy',
+                    text: 'O principal legado religioso do povo hebreu para a história foi:',
+                    context: 'Os hebreus se estabeleceram na Palestina e desenvolveram crenças influentes.',
+                    options: [
+                        { letter: 'A', text: 'A criação da escrita cuneiforme.' },
+                        { letter: 'B', text: 'O desenvolvimento do politeísmo organizado.' },
+                        { letter: 'C', text: 'A crença no monoteísmo (Deus único).' },
+                        { letter: 'D', text: 'A invenção da moeda de ouro.' },
+                        { letter: 'E', text: 'A construção das primeiras pirâmides.' }
+                    ],
+                    correctAnswer: 2,
+                    explanation: 'O monoteísmo hebraico foi revolucionário e influenciou o Cristianismo e o Islamismo.'
+                },
+                {
+                    id: 8,
+                    topic: 'hebreus',
+                    bank: 'fuvest-2024',
+                    difficulty: 'medium',
+                    text: 'O "Cativeiro da Babilônia" (587–539 a.C.) resultou em:',
+                    context: 'Nabucodonosor II conquistou Jerusalém e levou grande parte da população.',
+                    options: [
+                        { letter: 'A', text: 'O desaparecimento completo do povo hebreu da história.' },
+                        { letter: 'B', text: 'A destruição do templo de Jerusalém e o exílio de judeus.' },
+                        { letter: 'C', text: 'A adoção do politeísmo pelos hebreus.' },
+                        { letter: 'D', text: 'O fim do reino de Israel como potência militar.' },
+                        { letter: 'E', text: 'A conversão em massa ao zoroastrismo.' }
+                    ],
+                    correctAnswer: 1,
+                    explanation: 'O Cativeiro da Babilônia foi fundamental para a diáspora hebraica.'
+                },
+                {
+                    id: 9,
+                    topic: 'fenícios',
+                    bank: 'enem-2024',
+                    difficulty: 'easy',
+                    text: 'Os fenícios eram conhecidos principalmente por:',
+                    context: 'Os fenícios habitavam a costa do Mediterrâneo (atual Líbano).',
+                    options: [
+                        { letter: 'A', text: 'Construir grandes pirâmides em honra aos deuses.' },
+                        { letter: 'B', text: 'Dominar a agricultura e a mineração de ouro.' },
+                        { letter: 'C', text: 'Ser mestres do comércio marítimo e navegação pelo Mediterrâneo.' },
+                        { letter: 'D', text: 'Criar o primeiro império centralizado do Oriente Médio.' },
+                        { letter: 'E', text: 'Inventar a escrita cuneiforme.' }
+                    ],
+                    correctAnswer: 2,
+                    explanation: 'Os fenícios eram talassocráticos e estabeleceram uma rede comercial pelo Mediterrâneo.'
+                },
+                {
+                    id: 10,
+                    topic: 'fenícios',
+                    bank: 'enem-2022',
+                    difficulty: 'medium',
+                    text: 'O alfabeto fonético fenício foi um grande legado porque:',
+                    context: 'Desenvolvido por volta do século XII a.C., era muito mais simples.',
+                    options: [
+                        { letter: 'A', text: 'Era impossível de ser aprendido, mantendo o conhecimento em segredo.' },
+                        { letter: 'B', text: 'Representava sons e não objetos, com apenas ~22 letras, fácil de disseminar.' },
+                        { letter: 'C', text: 'Permitia apenas a escrita de textos comerciais.' },
+                        { letter: 'D', text: 'Era idêntico ao alfabeto egípcio hieroglífico.' },
+                        { letter: 'E', text: 'Podia ser escrito apenas em superfícies de ouro.' }
+                    ],
+                    correctAnswer: 1,
+                    explanation: 'O alfabeto fonético fenício foi revolucionário por ser simples e fácil de aprender.'
+                },
+                {
+                    id: 11,
+                    topic: 'persas',
+                    bank: 'unicamp-2024',
+                    difficulty: 'easy',
+                    text: 'Ciro II, o Grande (559–529 a.C.), é lembrado por:',
+                    context: 'Ciro unificou medas e persas e conquistou a Mesopotâmia.',
+                    options: [
+                        { letter: 'A', text: 'Destruir todas as cidades conquistadas.' },
+                        { letter: 'B', text: 'Praticar tolerância com povos conquistados e liberar hebreus.' },
+                        { letter: 'C', text: 'Instituir a democracia como sistema de governo.' },
+                        { letter: 'D', text: 'Rejeitar completamente o comércio com outros impérios.' },
+                        { letter: 'E', text: 'Criar a primeira moeda de prata da história.' }
+                    ],
+                    correctAnswer: 1,
+                    explanation: 'Ciro II praticava tolerância religiosa e libertou os judeus do cativeiro babilônico.'
+                },
+                {
+                    id: 12,
+                    topic: 'persas',
+                    bank: 'enem-2023',
+                    difficulty: 'medium',
+                    text: 'O sistema de satrapias do Império Persa foi importante porque:',
+                    context: 'Satrapias eram províncias governadas por sátrapas designados pelo imperador.',
+                    options: [
+                        { letter: 'A', text: 'Permitia uma governança descentralizada e eficiente de um vasto território.' },
+                        { letter: 'B', text: 'Eliminava completamente a necessidade de comunicação entre regiões.' },
+                        { letter: 'C', text: 'Garantia a independência total das províncias.' },
+                        { letter: 'D', text: 'Aboliu completamente o sistema de escravidão.' },
+                        { letter: 'E', text: 'Criou repúblicas democráticas em cada região.' }
+                    ],
+                    correctAnswer: 0,
+                    explanation: 'O sistema de satrapias permitiu ao Império Persa governar eficientemente um território vasto.'
+                },
+                {
+                    id: 13,
+                    topic: 'persas',
+                    bank: 'fuvest-2024',
+                    difficulty: 'hard',
+                    text: 'O zoroastrismo, religião persa, influenciou posteriormente:',
+                    context: 'O zoroastrismo era baseado no dualismo: Ahura Mazda (bem) versus Ahriman (mal).',
+                    options: [
+                        { letter: 'A', text: 'Exclusivamente a religião egípcia.' },
+                        { letter: 'B', text: 'Judaísmo, Cristianismo e Islamismo, com conceitos de paraíso e inferno.' },
+                        { letter: 'C', text: 'A criação da democracia grega.' },
+                        { letter: 'D', text: 'O desenvolvimento da tecnologia romana.' },
+                        { letter: 'E', text: 'A invenção da escrita alfabética.' }
+                    ],
+                    correctAnswer: 1,
+                    explanation: 'O zoroastrismo influenciou profundamente religiões monotheístas posteriores.'
+                },
+                {
+                    id: 14,
+                    topic: 'egito',
+                    bank: 'enem-2022',
+                    difficulty: 'hard',
+                    text: 'A concentração de poder nas mãos do faraó era justificada pela:',
+                    context: 'O faraó era considerado a encarnação de Hórus, filho do deus Rá.',
+                    options: [
+                        { letter: 'A', text: 'Necessidade de controlar os rios do Crescente Fértil.' },
+                        { letter: 'B', text: 'Crença de que o faraó era divino (teocracia) e possuía autoridade absoluta.' },
+                        { letter: 'C', text: 'Rejeição total do comércio e da economia de mercado.' },
+                        { letter: 'D', text: 'Incapacidade da população em participar de decisões políticas.' },
+                        { letter: 'E', text: 'Influência das práticas políticas mesopotâmicas de democracia.' }
+                    ],
+                    correctAnswer: 1,
+                    explanation: 'O Egito praticava a "teocracia faraônica": o faraó era considerado um deus vivo.'
+                },
+                {
+                    id: 15,
+                    topic: 'mesopotamia',
+                    bank: 'enem-2024',
+                    difficulty: 'medium',
+                    text: 'A escrita cuneiforme foi desenvolvida pelos sumérios principalmente para:',
+                    context: 'A escrita cuneiforme foi criada por volta de 3200 a.C.',
+                    options: [
+                        { letter: 'A', text: 'Registrar leis religiosas e proibições morais.' },
+                        { letter: 'B', text: 'Registrar informações administrativas, comerciais e religiosas.' },
+                        { letter: 'C', text: 'Comunicar-se exclusivamente com civilizações do Egito.' },
+                        { letter: 'D', text: 'Criar sistemas de criptografia militar avançados.' },
+                        { letter: 'E', text: 'Documentar história militar e conquistas bélicas.' }
+                    ],
+                    correctAnswer: 1,
+                    explanation: 'A escrita cuneiforme foi desenvolvida para registrar dados administrativos e comerciais.'
+                }
+            ];
+
+            const loadFromStorage = () => {
+                const saved = localStorage.getItem('questionsData');
+                if (saved) questionsData = JSON.parse(saved);
+            };
+
+            const saveToStorage = () => {
+                localStorage.setItem('questionsData', JSON.stringify(questionsData));
+            };
+
+            return {
+                getAll: () => [...questionsData],
+                getById: (id) => questionsData.find(q => q.id === id),
+                add: (question) => {
+                    const newId = Math.max(...questionsData.map(q => q.id), 0) + 1;
+                    question.id = newId;
+                    questionsData.push(question);
+                    saveToStorage();
+                    return newId;
+                },
+                update: (id, question) => {
+                    const index = questionsData.findIndex(q => q.id === id);
+                    if (index !== -1) {
+                        questionsData[index] = { ...question, id };
+                        saveToStorage();
+                    }
+                },
+                delete: (id) => {
+                    questionsData = questionsData.filter(q => q.id !== id);
+                    saveToStorage();
+                },
+                filter: (filters) => {
+                    return questionsData.filter(q => {
+                        return (!filters.topic || q.topic === filters.topic) &&
+                               (!filters.bank || q.bank === filters.bank) &&
+                               (!filters.difficulty || q.difficulty === filters.difficulty);
+                    });
+                },
+                init: loadFromStorage
+            };
+        })();
+
+        // ============================================
+        // 2. MÓDULO DE UTILS
+        // ============================================
+        const Utils = (() => {
+            const labels = {
+                topics: {
+                    'egito': 'Antigo Egito',
+                    'mesopotamia': 'Mesopotâmia',
+                    'hebreus': 'Hebreus',
+                    'fenícios': 'Fenícios',
+                    'persas': 'Persas'
+                },
+                banks: {
+                    'enem-2024': 'ENEM 2024',
+                    'enem-2023': 'ENEM 2023',
+                    'enem-2022': 'ENEM 2022',
+                    'fuvest-2024': 'FUVEST 2024',
+                    'unicamp-2024': 'UNICAMP 2024'
+                },
+                difficulties: {
+                    'easy': '⭐ Fácil',
+                    'medium': '⭐⭐ Médio',
+                    'hard': '⭐⭐⭐ Difícil'
+                }
+            };
+
+            return {
+                getTopicLabel: (topic) => labels.topics[topic] || topic,
+                getBankLabel: (bank) => labels.banks[bank] || bank,
+                getDifficultyLabel: (diff) => labels.difficulties[diff] || diff,
+                getTabs: () => [
+                    { name: 'simulador', label: '🎮 Simulador' },
+                    { name: 'gerenciador', label: '⚙️ Gerenciador' },
+                    { name: 'importar', label: '📥 Importar/Exportar' }
+                ],
+                getTopics: () => Object.keys(labels.topics),
+                getBanks: () => Object.keys(labels.banks),
+                getDifficulties: () => Object.keys(labels.difficulties)
+            };
+        })();
+
+        // ============================================
+        // 3. MÓDULO DE INTERFACE
+        // ============================================
+        const UI = (() => {
+            let state = {
+                currentTab: 'simulador',
+                filteredQuestions: [],
+                quizMode: false,
+                quizIndex: 0,
+                quizAnswers: {},
+                editingId: null
+            };
+
+            const render = {
+                tabs: () => {
+                    const container = document.getElementById('tabContainer');
+                    container.innerHTML = Utils.getTabs().map(tab => 
+                        `<button class="tab-btn ${tab.name === state.currentTab ? 'active' : ''}" 
+                         onclick="UI.switchTab('${tab.name}')">${tab.label}</button>`
+                    ).join('');
+                },
+
+                simulador: () => {
+                    const html = `
+                        <div class="filter-section">
+                            <h3 style="margin-bottom: 15px; color: var(--color-primary);">🔍 Filtros Avançados</h3>
+                            <div class="filter-row">
+                                <div class="filter-group">
+                                    <label for="filterTopic">Assunto</label>
+                                    <select id="filterTopic" onchange="UI.applyFilters()">
+                                        <option value="">Todos os assuntos</option>
+                                        ${Utils.getTopics().map(t => `<option value="${t}">${Utils.getTopicLabel(t)}</option>`).join('')}
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <label for="filterBank">Banca/Ano</label>
+                                    <select id="filterBank" onchange="UI.applyFilters()">
+                                        <option value="">Todas as bancas</option>
+                                        ${Utils.getBanks().map(b => `<option value="${b}">${Utils.getBankLabel(b)}</option>`).join('')}
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <label for="filterDifficulty">Dificuldade</label>
+                                    <select id="filterDifficulty" onchange="UI.applyFilters()">
+                                        <option value="">Todas as dificuldades</option>
+                                        ${Utils.getDifficulties().map(d => `<option value="${d}">${Utils.getDifficultyLabel(d)}</option>`).join('')}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="filter-buttons">
+                                <button class="btn btn-primary" onclick="UI.startQuiz()">Iniciar Simulado</button>
+                                <button class="btn btn-secondary btn-sm" onclick="UI.resetFilters()">Limpar Filtros</button>
+                            </div>
+                        </div>
+                        <div class="stats" id="statsContainer" style="display: none;">
+                            <div class="stat-box">
+                                <div class="stat-number" id="questionsCount">0</div>
+                                <div class="stat-label">Questões Encontradas</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number" id="topicsCount">0</div>
+                                <div class="stat-label">Assuntos</div>
+                            </div>
+                        </div>
+                        <div id="quizContainer" style="display: none;"></div>
+                        <div id="quizResults" style="display: none;"></div>
+                    `;
+                    document.getElementById('simulador').innerHTML = html;
+                },
+
+                gerenciador: () => {
+                    const all = DataModule.getAll();
+                    const topics = new Set(all.map(q => q.topic)).size;
+                    const banks = new Set(all.map(q => q.bank)).size;
+                    
+                    const html = `
+                        <div style="margin-bottom: 20px;">
+                            <button class="btn btn-primary" onclick="UI.openAddModal()">+ Adicionar Nova Questão</button>
+                        </div>
+                        <div class="stats">
+                            <div class="stat-box">
+                                <div class="stat-number">${all.length}</div>
+                                <div class="stat-label">Total de Questões</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">${topics}</div>
+                                <div class="stat-label">Assuntos</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">${banks}</div>
+                                <div class="stat-label">Bancas/Anos</div>
+                            </div>
+                        </div>
+                        <div class="filter-section" style="margin-bottom: 20px;">
+                            <input type="text" id="searchQuestions" placeholder="🔍 Pesquisar por texto..." 
+                             onkeyup="UI.filterQuestionsList()" style="width: 100%; padding: 12px; border-radius: 8px; 
+                             border: 1px solid #334155; background-color: #0f172a; color: var(--text-primary);">
+                        </div>
+                        <div class="question-list" id="questionsList"></div>
+                    `;
+                    document.getElementById('gerenciador').innerHTML = html;
+                    render.questionsList();
+                },
+
+                questionsList: () => {
+                    const all = DataModule.getAll();
+                    const container = document.getElementById('questionsList');
+                    
+                    if (all.length === 0) {
+                        container.innerHTML = '<div class="empty-state"><h3>Nenhuma questão encontrada</h3><p>Comece adicionando uma nova questão ao banco.</p></div>';
+                        return;
+                    }
+
+                    container.innerHTML = all.map(q => `
+                        <div class="question-card">
+                            <div class="question-header">
+                                <div style="flex: 1;">
+                                    <p class="question-text">${q.text}</p>
+                                    <div class="question-meta">
+                                        <span class="badge badge-topic">${Utils.getTopicLabel(q.topic)}</span>
+                                        <span class="badge badge-bank">${Utils.getBankLabel(q.bank)}</span>
+                                        <span class="difficulty ${q.difficulty}">${Utils.getDifficultyLabel(q.difficulty)}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="question-actions">
+                                <button class="btn btn-secondary btn-sm" onclick="UI.editQuestion(${q.id})">Editar</button>
+                                <button class="btn btn-danger btn-sm" onclick="UI.deleteQuestion(${q.id})">Deletar</button>
+                            </div>
+                        </div>
+                    `).join('');
+                },
+
+                importar: () => {
+                    const html = `
+                        <div class="form-section">
+                            <h3 class="section-title">📥 Importar Questões</h3>
+                            <p style="margin-bottom: 15px; color: var(--text-secondary);">Cole o JSON com as questões abaixo:</p>
+                            <div class="form-group">
+                                <textarea id="importJsonArea" placeholder='Colar JSON aqui...'></textarea>
+                            </div>
+                            <button class="btn btn-primary" onclick="UI.importQuestions()">Importar Questões</button>
+                        </div>
+                        <div class="form-section">
+                            <h3 class="section-title">📤 Exportar Questões</h3>
+                            <p style="margin-bottom: 15px; color: var(--text-secondary);">Exporte todas as suas questões em JSON:</p>
+                            <button class="btn btn-success" onclick="UI.exportQuestions()">Exportar JSON</button>
+                            <button class="btn btn-secondary btn-sm" onclick="UI.copyToClipboard()" style="margin-left: 10px;">Copiar</button>
+                            <div class="form-group" style="margin-top: 15px;">
+                                <textarea id="exportJsonArea" readonly placeholder='JSON aparecerá aqui...'></textarea>
+                            </div>
+                        </div>
+                    `;
+                    document.getElementById('importar').innerHTML = html;
+                },
+
+                quizQuestion: (index) => {
+                    const question = state.filteredQuestions[index];
+                    const total = state.filteredQuestions.length;
+                    
+                    let optionsHtml = state.quizAnswers[question.id] !== undefined 
+                        ? `<div class="feedback ${state.quizAnswers[question.id] === question.correctAnswer ? 'correct-feedback' : 'incorrect-feedback'} show">
+                            <div class="feedback-label">${state.quizAnswers[question.id] === question.correctAnswer ? '✓ Correto!' : '✗ Incorreto'}</div>
+                            <p><strong>Explicação:</strong> ${question.explanation}</p>
+                          </div>`
+                        : '';
+
+                    optionsHtml += `<div class="options">
+                        ${question.options.map((opt, idx) => `
+                            <label class="option ${state.quizAnswers[question.id] === idx ? 'selected' : ''}">
+                                <input type="radio" name="option" value="${idx}" 
+                                 ${state.quizAnswers[question.id] === idx ? 'checked' : ''} 
+                                 onchange="UI.selectAnswer(${question.id}, ${idx})">
+                                <span class="option-letter-circle">${opt.letter}</span>
+                                <span>${opt.text}</span>
+                            </label>
+                        `).join('')}
+                    </div>`;
+
+                    return `
+                        <div class="filter-section">
+                            <div class="question-header">
+                                <div><h3 style="color: var(--color-primary);">Questão ${index + 1} de ${total}</h3></div>
+                                <div class="question-meta">
+                                    <span class="badge badge-topic">${Utils.getTopicLabel(question.topic)}</span>
+                                    <span class="badge badge-bank">${Utils.getBankLabel(question.bank)}</span>
+                                    <span class="difficulty ${question.difficulty}">${Utils.getDifficultyLabel(question.difficulty)}</span>
+                                </div>
+                            </div>
+                            <p class="question-text">${question.text}</p>
+                            ${question.context ? `<div style="background-color: #0f172a; padding: 12px; border-radius: 8px; margin-bottom: 15px; border-left: 3px solid var(--color-primary); color: var(--text-secondary);">"${question.context}"</div>` : ''}
+                            ${optionsHtml}
+                            <div class="question-actions">
+                                <button class="btn btn-secondary btn-sm" onclick="UI.prevQuestion()" ${index === 0 ? 'style="display:none"' : ''}>← Anterior</button>
+                                <button class="btn btn-primary btn-sm" onclick="UI.nextQuestion()">${index === total - 1 ? 'Finalizar →' : 'Próxima →'}</button>
+                            </div>
+                        </div>
+                    `;
+                }
+            };
+
+            return {
+                init: () => {
+                    DataModule.init();
+                    state.filteredQuestions = DataModule.getAll();
+                    render.tabs();
+                    render.simulador();
+                    document.getElementById('questionModal').addEventListener('click', (e) => {
+                        if (e.target === document.getElementById('questionModal')) UI.closeAddModal();
+                    });
+                },
+
+                switchTab: (tabName) => {
+    state.currentTab = tabName;
+    render.tabs();
+    
+    // Limpar e renderizar a aba correta
+    if (tabName === 'simulador') {
+        document.getElementById('simulador').classList.add('active');
+        document.getElementById('gerenciador').classList.remove('active');
+        document.getElementById('importar').classList.remove('active');
+        render.simulador();
+    } else if (tabName === 'gerenciador') {
+        document.getElementById('simulador').classList.remove('active');
+        document.getElementById('gerenciador').classList.add('active');
+        document.getElementById('importar').classList.remove('active');
+        render.gerenciador();
+    } else if (tabName === 'importar') {
+        document.getElementById('simulador').classList.remove('active');
+        document.getElementById('gerenciador').classList.remove('active');
+        document.getElementById('importar').classList.add('active');
+        render.importar();
+    }
+},
+
+
+                applyFilters: () => {
+                    const filters = {
+                        topic: document.getElementById('filterTopic')?.value || '',
+                        bank: document.getElementById('filterBank')?.value || '',
+                        difficulty: document.getElementById('filterDifficulty')?.value || ''
+                    };
+                    state.filteredQuestions = DataModule.filter(filters);
+                    const topics = new Set(state.filteredQuestions.map(q => q.topic)).size;
+                    document.getElementById('questionsCount').textContent = state.filteredQuestions.length;
+                    document.getElementById('topicsCount').textContent = topics;
+                    document.getElementById('statsContainer').style.display = 'grid';
+                },
+
+                resetFilters: () => {
+                    document.getElementById('filterTopic').value = '';
+                    document.getElementById('filterBank').value = '';
+                    document.getElementById('filterDifficulty').value = '';
+                    state.filteredQuestions = DataModule.getAll();
+                    document.getElementById('statsContainer').style.display = 'none';
+                },
+
+                startQuiz: () => {
+                    if (state.filteredQuestions.length === 0) {
+                        alert('Nenhuma questão encontrada com os filtros selecionados.');
+                        return;
+                    }
+                    state.quizMode = true;
+                    state.quizIndex = 0;
+                    state.quizAnswers = {};
+                    document.getElementById('quizContainer').style.display = 'block';
+                    document.getElementById('quizContainer').innerHTML = render.quizQuestion(0);
+                },
+
+                selectAnswer: (questionId, answerIndex) => {
+                    state.quizAnswers[questionId] = answerIndex;
+                    const index = state.filteredQuestions.findIndex(q => q.id === questionId);
+                    document.getElementById('quizContainer').innerHTML = render.quizQuestion(index);
+                },
+
+                nextQuestion: () => {
+                    if (state.quizIndex < state.filteredQuestions.length - 1) {
+                        state.quizIndex++;
+                        document.getElementById('quizContainer').innerHTML = render.quizQuestion(state.quizIndex);
+                    } else {
+                        UI.finishQuiz();
+                    }
+                },
+
+                prevQuestion: () => {
+                    if (state.quizIndex > 0) {
+                        state.quizIndex--;
+                        document.getElementById('quizContainer').innerHTML = render.quizQuestion(state.quizIndex);
+                    }
+                },
+
+                finishQuiz: () => {
+                    let correctCount = 0;
+                    state.filteredQuestions.forEach(q => {
+                        if (state.quizAnswers[q.id] === q.correctAnswer) correctCount++;
+                    });
+                    const total = state.filteredQuestions.length;
+                    const percentage = Math.round((correctCount / total) * 100);
+                    const score = Math.round((correctCount / total) * 1000);
+
+                    document.getElementById('quizContainer').style.display = 'none';
+                    document.getElementById('quizResults').style.display = 'block';
+                    document.getElementById('quizResults').innerHTML = `
+                        <div class="filter-section">
+                            <h3 style="color: var(--color-primary); text-align: center; margin-bottom: 20px;">Resultado Final do Simulado</h3>
+                            <div class="stats">
+                                <div class="stat-box">
+                                    <div class="stat-number">${score}</div>
+                                    <div class="stat-label">Pontuação (0-1000)</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-number">${correctCount}</div>
+                                    <div class="stat-label">Questões Corretas</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-number">${percentage}%</div>
+                                    <div class="stat-label">Taxa de Acerto</div>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 20px;">
+                                <button class="btn btn-primary" onclick="UI.backToSimulador()">← Voltar ao Simulado</button>
+                            </div>
+                        </div>
+                    `;
+                },
+
+                backToSimulador: () => {
+                    state.quizMode = false;
+                    document.getElementById('quizContainer').style.display = 'none';
+                    document.getElementById('quizResults').style.display = 'none';
+                },
+
+                openAddModal: () => {
+                    state.editingId = null;
+                    document.getElementById('modalTitle').textContent = 'Adicionar Questão';
+                    document.getElementById('questionForm').innerHTML = UI.getQuestionForm();
+                    document.getElementById('questionModal').classList.add('active');
+                },
+
+                closeAddModal: () => {
+                    document.getElementById('questionModal').classList.remove('active');
+                    document.getElementById('successMessage').classList.remove('show');
+                },
+
+                getQuestionForm: () => {
+                    return `
+                        <div class="form-group">
+                            <label>Assunto</label>
+                            <select id="formTopic" required>
+                                <option value="">Selecione um assunto</option>
+                                ${Utils.getTopics().map(t => `<option value="${t}">${Utils.getTopicLabel(t)}</option>`).join('')}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Banca/Ano</label>
+                            <select id="formBank" required>
+                                <option value="">Selecione a banca</option>
+                                ${Utils.getBanks().map(b => `<option value="${b}">${Utils.getBankLabel(b)}</option>`).join('')}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Dificuldade</label>
+                            <select id="formDifficulty" required>
+                                ${Utils.getDifficulties().map(d => `<option value="${d}">${Utils.getDifficultyLabel(d)}</option>`).join('')}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Pergunta</label>
+                            <textarea id="formQuestion" required placeholder="Digite a pergunta..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Contexto (opcional)</label>
+                            <textarea id="formContext" placeholder="Contexto histórico ou citação..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Alternativas</label>
+                            <div class="option-group" id="optionsContainer">
+                                ${['A', 'B', 'C', 'D', 'E'].map((letter, idx) => `
+                                    <div class="option-input">
+                                        <span class="option-letter">${letter}</span>
+                                        <input type="text" id="option${idx}" placeholder="Digite a alternativa ${letter}..." required>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Resposta Correta</label>
+                            <select id="formCorrectAnswer" required>
+                                <option value="">Selecione a alternativa correta</option>
+                                <option value="0">A</option>
+                                <option value="1">B</option>
+                                <option value="2">C</option>
+                                <option value="3">D</option>
+                                <option value="4">E</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Explicação</label>
+                            <textarea id="formExplanation" required placeholder="Explique por que essa é a resposta correta..."></textarea>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <button type="button" class="btn btn-secondary" onclick="UI.closeAddModal()">Cancelar</button>
+                            <button type="button" class="btn btn-primary" onclick="UI.saveQuestion()">Salvar Questão</button>
+                        </div>
+                    `;
+                },
+
+                saveQuestion: () => {
+                    const topic = document.getElementById('formTopic').value;
+                    const bank = document.getElementById('formBank').value;
+                    const difficulty = document.getElementById('formDifficulty').value;
+                    const text = document.getElementById('formQuestion').value;
+                    const context = document.getElementById('formContext').value;
+                    const correctAnswer = parseInt(document.getElementById('formCorrectAnswer').value);
+                    const explanation = document.getElementById('formExplanation').value;
+
+                    if (!topic || !bank || !text || isNaN(correctAnswer) || !explanation) {
+                        alert('Preencha todos os campos obrigatórios!');
+                        return;
+                    }
+
+                    const options = [];
+                    ['A', 'B', 'C', 'D', 'E'].forEach((letter, idx) => {
+                        const optionText = document.getElementById(`option${idx}`).value;
+                        if (!optionText) {
+                            alert(`Preencha a alternativa ${letter}!`);
+                            return;
+                        }
+                        options.push({ letter, text: optionText });
+                    });
+
+                    const question = { topic, bank, difficulty, text, context, options, correctAnswer, explanation };
+
+                    if (state.editingId) {
+                        DataModule.update(state.editingId, question);
+                    } else {
+                        DataModule.add(question);
+                    }
+
+                    document.getElementById('successMessage').classList.add('show');
+                    setTimeout(() => {
+                        UI.closeAddModal();
+                        render.questionsList();
+                        render.gerenciador();
+                    }, 1500);
+                },
+
+                editQuestion: (id) => {
+                    const question = DataModule.getById(id);
+                    state.editingId = id;
+                    document.getElementById('modalTitle').textContent = 'Editar Questão';
+                    document.getElementById('questionForm').innerHTML = UI.getQuestionForm();
+                    
+                    document.getElementById('formTopic').value = question.topic;
+                    document.getElementById('formBank').value = question.bank;
+                    document.getElementById('formDifficulty').value = question.difficulty;
+                    document.getElementById('formQuestion').value = question.text;
+                    document.getElementById('formContext').value = question.context;
+                    document.getElementById('formCorrectAnswer').value = question.correctAnswer;
+                    document.getElementById('formExplanation').value = question.explanation;
+                    question.options.forEach((opt, idx) => {
+                        document.getElementById(`option${idx}`).value = opt.text;
+                    });
+
+                    document.getElementById('questionModal').classList.add('active');
+                },
+
+                deleteQuestion: (id) => {
+                    if (confirm('Tem certeza que deseja deletar essa questão?')) {
+                        DataModule.delete(id);
+                        render.questionsList();
+                    }
+                },
+
+                filterQuestionsList: () => {
+                    const search = document.getElementById('searchQuestions').value.toLowerCase();
+                    const cards = document.querySelectorAll('.question-card');
+                    cards.forEach(card => {
+                        const text = card.textContent.toLowerCase();
+                        card.style.display = text.includes(search) ? 'block' : 'none';
+                    });
+                },
+
+                exportQuestions: () => {
+                    const json = JSON.stringify(DataModule.getAll(), null, 2);
+                    document.getElementById('exportJsonArea').value = json;
+                },
+
+                importQuestions: () => {
+                    const json = document.getElementById('importJsonArea').value;
+                    try {
+                        const imported = JSON.parse(json);
+                        if (!Array.isArray(imported)) throw new Error('Formato inválido');
+                        imported.forEach(q => DataModule.add(q));
+                        alert('✓ Questões importadas com sucesso!');
+                        document.getElementById('importJsonArea').value = '';
+                        render.importar();
+                    } catch (e) {
+                        alert('Erro ao importar: ' + e.message);
+                    }
+                },
+
+                copyToClipboard: () => {
+                    const area = document.getElementById('exportJsonArea');
+                    area.select();
+                    document.execCommand('copy');
+                    alert('✓ Copiado para área de transferência!');
+                }
+            };
+        })();
+
+        // ============================================
+        // 4. INICIALIZAÇÃO
+        // ============================================
+        window.addEventListener('load', () => UI.init());
+    </script>
+</body>
+</html>
